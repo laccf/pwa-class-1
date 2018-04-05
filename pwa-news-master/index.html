@@ -76,6 +76,20 @@
 <script src="library/moment.min.js"></script>
 
 <script src="js/api.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function(){
 
+            console.log("Event - Load");
+            
+            navigator.serviceWorker.register('sw-pwa-news.js')
+            .then(function (registration) {
+                console.log('Registrando Service Worker', registration)
+            }).catch(function (error) {
+                console.error(error)
+            })
+        })
+    }
+</script>
 </body>
 </html>
