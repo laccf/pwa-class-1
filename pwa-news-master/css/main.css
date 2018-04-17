@@ -38,3 +38,9 @@ img {
 button {
     cursor: pointer;
 }
+
+.news-card {
+    margin-right: 5px;
+    margin-left:5px;
+    margin-top: 8px;
+}

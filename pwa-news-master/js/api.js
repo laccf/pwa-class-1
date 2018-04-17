@@ -11,6 +11,62 @@
 
     getNews();
 
+    var permissionNotification = false;
+
+    // Verifica se o browser suporta notificações, 
+    // caso sim, pede a permissão
+    if ('Notification' in window) {
+        permissionNotification = Notification.permission;
+
+        if (permissionNotification === 'default') {
+            btAlert.show();
+        }
+
+        brAlert.click(function () {
+
+            Notification.requestPermission(function (perm) {
+                permissionNotification = perm;
+            });
+            if (permissionNotification !== 'default') {
+               btAlert.show();            
+            }
+        });
+    }
+
+    window.onblur = function onBlur() {
+        console.log('Exit...');
+        if (permissionNotification === 'granted') {
+            setTimeout(function () {
+                navigator.serviceWorker.getRegistration()
+                    .then(function (reg) {
+                        var options =
+                            {
+                                body: 'lula foi ...',
+                                icon: 'icons/android-chrome-192x192.png',
+                                badge: 'icons/android-chrome-192x192.png'
+                            };
+                        reg.showNotification('Ei tem novas notificações', options);
+
+                    });
+            }, 3000);
+        }
+    }
+
+    // Altera a cor do background de acordo com a luminosidade 
+    // do dispositivo (não é compatível com todos os browsers)
+    if ('ondevicelight' in window) {
+        window.addEventListener('deviceLight', onUpdateDeviceLight)
+    }
+    else {
+        console.log('There is no ondevicelight.');
+    }
+
+    function onUpdateDeviceLight(event) {
+        var colorPart = Math.min(255, event.value).toFixed(0);
+        document.getElementById('body').style.backgroundColor =
+            'rgb(' + colorPart + ', ' + colorPart + ', ' + colorPart + ')';
+    }
+
     function getNews() {
         var url = API + ENDPOINT_HEADLINES + 'country=br&' + API_KEY + getCategory();
         $.get(url, success);
@@ -24,14 +80,14 @@
     function success(data) {
         var divNews = $('#news');
         divNews.empty();
-        setTopNews( data.articles[0]);
+        setTopNews(data.articles[0]);
         for (var i = 1; i < data.articles.length; ++i) {
             divNews.append(getNewsHtml(data.articles[i]));
         }
     }
 
     function setTopNews(article) {
-        if(article) {
+        if (article) {
             $('#top-news-title').text(article.title);
             $('#top-news-description').text(article.description);
             $('#top-news-image').attr('src', article.urlToImage).attr('alt', article.title);
