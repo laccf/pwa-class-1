@@ -12,7 +12,7 @@
     });
 
     btInstall.click(function () {
-        if(eventinstall)
+        if(eventInstall)
         {
             eventInstall.prompt();
             eventInstall.userChoice.then(function (choiceResult) {

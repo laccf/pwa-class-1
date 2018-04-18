@@ -48,7 +48,7 @@
 
         console.log("SW - Fetch");
 
-        if (event.request.url.indexof(API) === -1) {
+        if (event.request.url.indexOf(API) === -1) {
             event.respondWith(
                 caches.match(event.request)
                     .then(function (response) {
