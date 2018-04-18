@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    self.addEventListener('notifictionclick', function (event) {
+    self.addEventListener('notificationclick', function (event) {
         event.notification.close();
 
         event.waitUntil(
@@ -20,7 +20,7 @@
         );
         setTimeout(function(){
             event.notification.close();
-        }, 2000);
+        }, 5000);
     });
 
 })();

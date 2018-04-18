@@ -12,6 +12,15 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- Colar aqui os links do Favicon da aplicação -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+
 
 
 
@@ -29,45 +38,49 @@
             </div>
         </header>
 
-        <nav class="navbar navbar-toggleable-sm navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- <button id="bt-install" type="button" arial-label="search" class="col-xs-2 hide">
+            <a class="navbar-brand" href="#">PWA News</a>
 
+            <button id="bt-install" class="btn my-2 my-sm-0" type="button" arial-label="search" class="col-xs-2 hide">
+                <span class="oi oi-data-transfer-download"></span>
             </button>
 
-            <button id="btAlert" type="button" arial-label="alert" class="col-xs-2 hide">
+            <!-- <button id="btAlert" type="button" arial-label="alert" class="col-xs-2 hide">
 
             </button> -->
 
-            <div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li id="headline" class="nav-item active">
-                        <a class="nav-link" href="#">Headline</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Headline
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
-                    <li id="health" class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Health</a>
                     </li>
-                    <li id="sports" class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Sports</a>
                     </li>
-                    <li id="entertainment" class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Entertainment</a>
                     </li>
-                    <li id="technology" class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Technology</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Field Search">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
 
-
-        <section>
+        <section class="container-top-margin">
             <div id="top-news" class="row jumbotron p-3 p-md-5 text-white rounded bg-dark">
                 <div class="col-12 col-sm-12  col-lg-6 px-0">
                     <img id="top-news-image" src="#" />
@@ -102,16 +115,16 @@
 
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function(){
-    
+            window.addEventListener('load', function () {
+
                 console.log("Event - Load");
-                
+
                 navigator.serviceWorker.register('sw-pwa-news.js')
-                .then(function (registration) {
-                    console.log('Registrando Service Worker', registration)
-                }).catch(function (error) {
-                    console.error(error)
-                })
+                    .then(function (registration) {
+                        console.log('Registrando Service Worker', registration)
+                    }).catch(function (error) {
+                        console.error(error)
+                    })
             })
         }
     </script>

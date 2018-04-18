@@ -44,3 +44,7 @@ button {
     margin-left:5px;
     margin-top: 8px;
 }
+
+.container-top-margin {
+    matgin-top: 70px;
+}
